@@ -27,7 +27,29 @@ let yyyy = String(date.getFullYear());
 if (mm < 10) {
     mm = "0"+mm;
 }
-document.getElementById("printDate").innerHTML = "dd/mm/yyyy";
-// console.log(dd)
-// console.log(mm)
-// console.log(yyyy)
+window.onload = function() {
+    document.getElementById("printDate").innerHTML = dd + " / " + mm + " / " + yyyy;
+}
+
+
+//Q4
+function calcArea() {
+    let side1 = parseInt(document.getElementById("side1").value)
+    let side2 = parseInt(document.getElementById("side2").value)
+    let side3 = parseInt(document.getElementById("side3").value)
+    let s = (side1 + side2 + side3) / 2
+    let area = Math.sqrt(s * (s-side1) * (s-side2) * (s-side3));
+    document.getElementById("printArea").innerHTML = "The area of the Triangle is " + area;
+}
+function q4(){
+    let side1 = String(document.getElementById("side1").value)
+    let side2 = String(document.getElementById("side2").value)
+    let side3 = String(document.getElementById("side3").value)
+    document.getElementById("printDim").innerHTML = "The sides of the Triangle are " + side1 + ", " + side2 + " and " + side3;
+    calcArea();
+}
+function clrQ4() {
+    document.getElementById("printDim").innerHTML = "";
+    document.getElementById("printArea").innerHTML = "";
+}
+

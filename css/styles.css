@@ -4,3 +4,7 @@
     font-size: 20px;
     color: white;
 }
+
+#side1, #side2, #side3{
+    width: 3%;
+}
