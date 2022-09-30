@@ -1,3 +1,8 @@
+window.onload = function() {
+    document.getElementById("printDate").innerHTML = dd + " / " + mm + " / " + yyyy;
+}
+
+
 //Q1
 let date = new Date();
 let dayNum = date.getDay();
@@ -27,9 +32,7 @@ let yyyy = String(date.getFullYear());
 if (mm < 10) {
     mm = "0"+mm;
 }
-window.onload = function() {
-    document.getElementById("printDate").innerHTML = dd + " / " + mm + " / " + yyyy;
-}
+//display in onload function
 
 
 //Q4
@@ -52,4 +55,24 @@ function clrQ4() {
     document.getElementById("printDim").innerHTML = "";
     document.getElementById("printArea").innerHTML = "";
 }
+
+//Q5
+function rotate() {
+    const text = document.getElementById("string");
+    const element = text.childNodes[0];
+    let list = element.data;
+
+    setInterval(() => {
+        list = list[list.length-1] + list.substring(0, list.length-1);
+        element.data = list;
+
+    }, 100);
+
+}
+
+function stopRotate() {
+    document.getElementById("string").innerHTML = "w3resource ";
+
+}
+
 
