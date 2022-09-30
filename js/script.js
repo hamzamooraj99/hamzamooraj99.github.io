@@ -1,6 +1,6 @@
-window.onload = function() {
-    document.getElementById("printDate").innerHTML = dd + " / " + mm + " / " + yyyy;
-}
+// window.onload = function() {
+//     document.getElementById("printDate").innerHTML = dd + " / " + mm + " / " + yyyy;
+// }
 
 
 //Q1
@@ -16,7 +16,8 @@ if (hrs > 12) {
 } else {
     amPm = "AM"
 }
-document.body.innerHTML = "<h1>Q1</h1><h2>Today is " + dayList[dayNum] + " and the time is " + (hrs-12) + ":" + min + " " + amPm + "</h2>"
+document.getElementById("today").innerHTML = "Today is " + dayList[dayNum] + " and the time is " + (hrs-12) + ":" + min + " " + amPm
+// document.body.innerHTML = "<h1>Q1</h1><h2>Today is " + dayList[dayNum] + " and the time is " + (hrs-12) + ":" + min + " " + amPm + "</h2>"
 
 
 //Q2
@@ -33,6 +34,7 @@ if (mm < 10) {
     mm = "0"+mm;
 }
 //display in onload function
+document.getElementById("printDate").innerHTML = dd + " / " + mm + " / " + yyyy;
 
 
 //Q4
