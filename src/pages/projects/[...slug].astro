@@ -1,0 +1,95 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const projects = await getCollection("projects");
+	return projects.map((p) => ({
+		params: { slug: p.slug },
+		props: { project: p },
+	}));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+const { title, description, timeline, github } = project.data;
+---
+
+<PageLayout meta={{ title }}>
+	<article>
+		<header class="mb-10">
+			<h1 class="title mb-2">{title}</h1>
+			{description && <p class="lead">{description}</p>}
+		</header>
+
+		<div class="prose-wrap">
+			<Content />
+		</div>
+
+		<footer class="project-footer">
+			<div class="project-footer-grid">
+				<div>
+					<div class="label">Description</div>
+					<div class="value">{description}</div>
+				</div>
+
+				<div>
+					<div class="label">Timeline</div>
+					<div class="value">{timeline}</div>
+				</div>
+			</div>
+
+			{github && (
+				<div class="project-footer-actions">
+					<a class="btn" href={github} target="_blank" rel="noreferrer">View GitHub repo</a>
+				</div>
+			)}
+		</footer>
+	</article>
+
+	<style>
+		.lead {
+			opacity: 0.85;
+			margin: 0;
+		}
+
+		/* Make markdown inherit theme colors (dark/light) */
+		.prose-wrap :global(*) {
+			color: inherit;
+		}
+
+		.project-footer {
+			margin-top: 3rem;
+			padding-top: 1.25rem;
+			border-top: 1px solid rgba(255,255,255,0.08);
+		}
+
+		.project-footer-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+		@media (min-width: 640px) {
+			.project-footer-grid {
+				grid-template-columns: 1fr 1fr;
+				align-items: start;
+			}
+		}
+
+		.label {
+			font-size: 0.85rem;
+			opacity: 0.7;
+			margin-bottom: 0.35rem;
+		}
+
+		.value {
+			font-size: 0.95rem;
+			line-height: 1.6;
+		}
+
+		.project-footer-actions {
+			margin-top: 1.25rem;
+		}
+	</style>
+</PageLayout>
