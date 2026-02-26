@@ -32,7 +32,7 @@ const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
           <h2 class="year">{year}</h2>
 
           <div class="pub-list">
-            {byYear[year].map((p) => (
+            {(byYear[year] ?? []).map((p) => (
               <div class="pub-card">
                 {/* Entire card click goes to primary link */}
                 <a class="pub-main" href={p.data.links.primary} target="_blank" rel="noreferrer">
