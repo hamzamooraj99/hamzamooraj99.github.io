@@ -1,7 +1,7 @@
 ---
 title: "Multimodal Medical QA Assistant with RAG"
 description: "Designed and built a multimodal medical QA system using RAG, FAISS, LLaMA and Whisper to ground responses in trusted NHS healthcare data."
-# date: 2026-02-01
+timeline: "Jan 12, 2025 - Apr 12, 2025"
 # cover: "/images/diabetes.png"
 order: 2
 github: "https://github.com/hamzamooraj99/Medical-CA-w-RAG"

@@ -1,7 +1,7 @@
 ---
 title: "AI Learning Buddy – RAG Academic Assistant"
 description: "Designed and deployed a containerized RAG-based academic assistant using Milvus and local LLaMA to ground answers in course materials."
-# date: 2026-02-01
+timeline: "Jul 15, 2025 - Sep 15, 2025"
 # cover: "(https://media.contra.com/image/upload/fl_progressive/q_auto:best/u5kd37fk0b6yj2zgp5ry.webp)"
 order: 3
 github: "https://github.com/hamzamooraj99/HWU-AI-Learning-Buddy-PoC"

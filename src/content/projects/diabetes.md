@@ -1,7 +1,7 @@
 ---
 title: "Diabetes Risk Prediction Using Neural Networks"
 description: "Built a neural network model to predict diabetes risk, analysing performance under class imbalance using TensorFlow and Keras."
-# date: 2026-02-01
+timeline: "Apr 1, 2025 - Apr 30, 2025"
 # cover: "/images/diabetes.png"
 order: 4
 github: "https://github.com/hamzamooraj99/ANN-CDC-Diabetes-Case-Study-IMB/tree/main"
