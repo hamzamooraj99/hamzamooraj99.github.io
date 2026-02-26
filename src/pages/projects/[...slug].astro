@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props as { project: ProjectEntry };
 const { Content } = await project.render();
-const { description, timeline, github, title } = project.data;
+const { description, timeline, github } = project.data;
 ---
 
 <PageLayout meta={{ title: project.data.title }}>
@@ -54,10 +54,28 @@ const { description, timeline, github, title } = project.data;
     .value { font-size: 0.95rem; line-height: 1.6; }
     .project-footer-actions { margin-top: 1.25rem; }
 	.github-btn {
-		@apply inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium no-underline transition;
-		@apply border-accent text-accent;
-		@apply hover:bg-accent hover:text-white;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.6rem 1rem;
+		border-radius: 999px;
+		font-size: 0.9rem;
+		font-weight: 500;
+		text-decoration: none;
+
+		color: var(--color-accent);
+		border: 1px solid var(--color-accent);
+		background: transparent;
+
+		transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 	}
+
+	.github-btn:hover {
+		background: var(--color-accent);
+		color: white;
+		transform: translateY(-1px);
+	}
+
 	.github-icon {
 		width: 16px;
 		height: 16px;
