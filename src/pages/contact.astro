@@ -1,0 +1,31 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+---
+
+<PageLayout meta={{ title: "Contact" }}>
+	<section>
+		<h1 class="title mb-6">Contact</h1>
+		<p class="mb-6">
+			Use the form below, or reach me via LinkedIn / email from the icons on the home page.
+		</p>
+
+		<form class="space-y-4 max-w-xl" method="POST" action="PASTE_FORM_ENDPOINT_HERE">
+			<div>
+				<label class="block mb-2" for="name">Name</label>
+				<input class="input w-full" id="name" name="name" required />
+			</div>
+
+			<div>
+				<label class="block mb-2" for="email">Email</label>
+				<input class="input w-full" id="email" name="email" type="email" required />
+			</div>
+
+			<div>
+				<label class="block mb-2" for="message">Message</label>
+				<textarea class="input w-full" id="message" name="message" rows="6" required></textarea>
+			</div>
+
+			<button class="btn" type="submit">Send</button>
+		</form>
+	</section>
+</PageLayout>
