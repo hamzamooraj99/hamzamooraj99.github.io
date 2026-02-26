@@ -2,7 +2,7 @@
 title: "Vision-Model Benchmarking for Crop Disease Classification"
 description: "Benchmarked CNNs and Vision–Language Models under domain shift to build a robust crop disease classification pipeline across lab and field data."
 timeline: "Jun 25, 2025 - Ongoing"
-# cover: "/images/diabetes.png"
+cover: "/project-covers/agripath.png"
 order: 1
 github: "https://github.com/hamzamooraj99/AgriPath-Publication"
 ---
