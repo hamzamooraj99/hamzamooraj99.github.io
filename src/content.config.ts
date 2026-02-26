@@ -56,6 +56,25 @@ const tag = defineCollection({
 	}),
 });
 
+const publication = defineCollection({
+	loader: glob({ base: "./src/content/publication", pattern: "**/*.{md,mdx}" }),
+	schema: baseSchema.extend({
+		description: z.string().optional(),
+		publishDate: z
+			.string()
+			.or(z.date())
+			.transform((val) => new Date(val)),
+		authors: z.string().optional(),
+		venue: z.string().optional(), // e.g. "Preprint", "NeurIPS 2025 Spotlight"
+		primaryUrl: z.string(), // where the card title goes (arxiv/pdf/etc.)
+		arxivUrl: z.string().optional(),
+		githubUrl: z.string().optional(),
+		pdfUrl: z.string().optional(),
+		tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+		cover: z.string().optional(), // e.g. "/publication-covers/infusion.png"
+	}),
+});
+
 const projects = defineCollection({
 	type: "content",
 	schema: baseSchema.extend({
@@ -67,4 +86,4 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { post, note, tag, projects };
+export const collections = { post, note, tag, publication, projects };
