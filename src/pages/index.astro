@@ -1,36 +1,47 @@
----
-import SocialList from "@/components/SocialList.astro";
-import PageLayout from "@/layouts/Base.astro";
----
+<section>
+	<h1 class="title mb-3">Hi, I’m Hamza.</h1>
 
-<PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-4">Hi, I’m Hamza.</h1>
+	<div class="mb-8">
+		<SocialList />
+	</div>
 
-		<div class="mb-6">
-			<SocialList />
+	<p class="mb-5 text-base sm:text-lg">
+		I’m a research-oriented AI engineer specialising in multimodal generative AI systems and retrieval-augmented generation.
+		I graduated from Heriot-Watt University in 2025 with a First-Class Honours BSc in Computer Science with a specialisation in AI.
+		My core focus and aspirations are researching, developing, and deploying reliable and safety-critical AI across various domain and mediums.
+	</p>
+
+	<div class="space-y-6">
+		<div>
+			<h2 class="title mb-2 text-lg">Now</h2>
+			<p class="mb-0">
+				Benchmarking vision-language models under domain shift (lab ↔ field) for crop disease classification, and
+				building evaluation-driven RAG agents for medical QA.
+			</p>
 		</div>
 
-		<p class="mb-4">
-			I build and evaluate multimodal and retrieval-augmented AI systems — the kind that survive contact with real data,
-			not just clean demos.
-		</p>
-
-		<p class="mb-4">
-			Recently: benchmarking vision-language models for crop disease classification, and building RAG-based medical QA agents
-			with structured evaluation and failure analysis.
-		</p>
-
-		<p class="mb-4">
-			Longer-term, I’m focused on agentic systems and safety-critical deployment — where reliability, grounding, and “don’t
-			make things up” are product requirements, not vibes.
-		</p>
-
-		<div class="flex flex-wrap gap-3">
-			<a class="btn" href="/projects/">View projects</a>
-			<a class="btn" href="/publications/">Publications</a>
-			<a class="btn" href="/cv/">Download CV</a>
-			<a class="btn" href="/contact/">Contact</a>
+		<div>
+			<h2 class="title mb-2 text-lg">Previously</h2>
+			<ul class="list-disc pl-5 space-y-1">
+				<li>Led a RAG-enabled medical QA agent (FAISS + Llama) and measured quality with/without retrieval.</li>
+				<li>Built a “Learning Buddy” RAG pipeline (LlamaIndex + Milvus) and deployed a Streamlit demo via Docker.</li>
+				<li>Trained and evaluated CNN baselines (ResNet-50) and VLM variants (zero-shot, probing, LoRA).</li>
+			</ul>
 		</div>
-	</section>
-</PageLayout>
+
+		<div>
+			<h2 class="title mb-2 text-lg">Interests</h2>
+			<p class="mb-0">
+				Agentic multimodal systems, grounded reasoning, and practical safety constraints — turning “works on my dataset”
+				into “works when it matters.”
+			</p>
+		</div>
+	</div>
+
+	<div class="mt-10 flex flex-wrap gap-3">
+		<a class="btn" href="/projects/">Projects</a>
+		<a class="btn" href="/publications/">Publications</a>
+		<a class="btn" href="/cv/">Download CV</a>
+		<a class="btn" href="/contact/">Contact</a>
+	</div>
+</section>
