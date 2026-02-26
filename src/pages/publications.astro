@@ -3,205 +3,200 @@ import PageLayout from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
 
 const pubs = await getCollection("publication");
-pubs.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+// sort newest year first (and then title)
+pubs.sort((a, b) => (b.data.year - a.data.year) || a.data.title.localeCompare(b.data.title));
 
 // group by year
 const byYear = pubs.reduce((acc, p) => {
-	const year = p.data.publishDate.getFullYear().toString();
-	(acc[year] ??= []).push(p);
-	return acc;
-}, {} as Record<string, typeof pubs>);
+  const y = p.data.year;
+  (acc[y] ??= []).push(p);
+  return acc;
+}, {} as Record<number, typeof pubs>);
 
-const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
 ---
 
 <PageLayout meta={{ title: "Publications" }}>
-	<section class="mx-auto max-w-3xl">
-		<h1 class="title mb-6">Publications</h1>
+  <section class="mx-auto w-full max-w-3xl">
+    <h1 class="title mb-8">Publications</h1>
 
-		{pubs.length === 0 ? (
-			<div class="coming-soon">
-				<div class="coming-soon-title">Coming Soon</div>
-				<div class="coming-soon-subtext">
-					Updates will appear here as soon as papers/preprints are public.
-				</div>
-			</div>
-		) : (
-			<div class="space-y-10">
-				{years.map((year) => (
-					<section>
-						<h2 class="year">{year}</h2>
-						<div class="space-y-6">
-							{byYear[year].map((p) => (
-								<article class="pub-card">
-									{p.data.cover && (
-										<img class="pub-cover" src={p.data.cover} alt={`${p.data.title} cover`} />
-									)}
+    {pubs.length === 0 ? (
+      <div class="coming-soon">
+        <div class="coming-title">Coming soon</div>
+        <div class="coming-text">Selected writing and manuscripts will appear here.</div>
+      </div>
+    ) : (
+      years.map((year) => (
+        <section class="year-block">
+          <h2 class="year">{year}</h2>
 
-									<div class="pub-body">
-										<a class="pub-title" href={p.data.primaryUrl} target="_blank" rel="noreferrer">
-											{p.data.title}
-										</a>
+          <div class="pub-list">
+            {byYear[year].map((p) => (
+              <div class="pub-card">
+                {/* Entire card click goes to primary link */}
+                <a class="pub-main" href={p.data.links.primary} target="_blank" rel="noreferrer">
+                  {p.data.cover && (
+                    <img class="pub-cover" src={p.data.cover} alt={`${p.data.title} cover`} loading="lazy" />
+                  )}
 
-										{p.data.venue && <div class="pub-venue">{p.data.venue}</div>}
-										{p.data.authors && <div class="pub-authors">{p.data.authors}</div>}
+                  <div class="pub-body">
+                    <div class="pub-title">{p.data.title}</div>
 
-										{p.data.description && <div class="pub-desc">{p.data.description}</div>}
+                    {p.data.venue && <div class="badge">{p.data.venue}</div>}
 
-										<div class="pub-actions">
-											{p.data.tags?.map((t) => (
-												<span class="tag">{t}</span>
-											))}
-											{p.data.arxivUrl && (
-												<a class="pill" href={p.data.arxivUrl} target="_blank" rel="noreferrer">
-													arXiv
-												</a>
-											)}
-											{p.data.pdfUrl && (
-												<a class="pill" href={p.data.pdfUrl} target="_blank" rel="noreferrer">
-													PDF
-												</a>
-											)}
-											{p.data.githubUrl && (
-												<a class="pill" href={p.data.githubUrl} target="_blank" rel="noreferrer">
-													GitHub
-												</a>
-											)}
-										</div>
-									</div>
-								</article>
-							))}
-						</div>
-					</section>
-				))}
-			</div>
-		)}
-	</section>
+                    {p.data.authors && <div class="pub-authors">{p.data.authors}</div>}
 
-	<style>
-		.year {
-			font-size: 1.5rem;
-			font-weight: 700;
-			margin: 0 0 1rem 0;
-			color: var(--color-accent-2);
-		}
+                    {p.data.description && <div class="pub-desc">{p.data.description}</div>}
+                  </div>
+                </a>
 
-		.pub-card {
-			display: grid;
-			grid-template-columns: 88px 1fr;
-			gap: 1rem;
-			padding: 1.25rem;
-			border-radius: 12px;
-			border: 1px solid rgba(255, 255, 255, 0.08);
-			background: rgba(255, 255, 255, 0.03);
-		}
+                {/* Optional buttons row (don’t wrap these in the main <a>) */}
+                <div class="pub-actions">
+                  {p.data.tags?.slice(0, 3).map((t) => (
+                    <span class="tag">{t}</span>
+                  ))}
 
-		.pub-cover {
-			width: 88px;
-			height: 88px;
-			border-radius: 10px;
-			object-fit: cover;
-			border: 1px solid rgba(255, 255, 255, 0.08);
-		}
+                  <div class="spacer" />
 
-		.pub-title {
-			display: inline-block;
-			font-size: 1.1rem;
-			font-weight: 700;
-			line-height: 1.25;
-			text-decoration: underline;
-			text-decoration-color: rgba(255, 255, 255, 0.25);
-			text-underline-offset: 3px;
-		}
-		.pub-title:hover {
-			color: var(--color-accent);
-			text-decoration-color: var(--color-accent);
-		}
+                  {p.data.links.arxiv && (
+                    <a class="pill" href={p.data.links.arxiv} target="_blank" rel="noreferrer">arXiv</a>
+                  )}
+                  {p.data.links.pdf && (
+                    <a class="pill" href={p.data.links.pdf} target="_blank" rel="noreferrer">PDF</a>
+                  )}
+                  {p.data.links.github && (
+                    <a class="pill pill-accent" href={p.data.links.github} target="_blank" rel="noreferrer">GitHub</a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    )}
+  </section>
 
-		.pub-venue {
-			display: inline-block;
-			margin-top: 0.5rem;
-			padding: 0.2rem 0.55rem;
-			border-radius: 999px;
-			font-size: 0.75rem;
-			font-weight: 600;
-			background: rgba(34, 197, 94, 0.15);
-			border: 1px solid rgba(34, 197, 94, 0.25);
-		}
+  <style>
+    .coming-soon{
+      margin-top: 2rem;
+      padding: 2.5rem 1.25rem;
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 12px;
+      text-align: center;
+      opacity: 0.85;
+    }
+    .coming-title{
+      color: var(--color-accent);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .coming-text{ line-height: 1.6; }
 
-		.pub-authors {
-			margin-top: 0.5rem;
-			opacity: 0.75;
-			font-size: 0.9rem;
-		}
+    .year-block{ margin-top: 2rem; }
+    .year{
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 1.25rem 0 0.75rem;
+      color: var(--color-accent-2);
+    }
 
-		.pub-desc {
-			margin-top: 0.6rem;
-			opacity: 0.85;
-			font-size: 0.95rem;
-			line-height: 1.55;
-		}
+    .pub-list{ display: grid; gap: 1rem; }
 
-		.pub-actions {
-			margin-top: 0.9rem;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.5rem;
-			align-items: center;
-		}
+    .pub-card{
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+    }
 
-		.tag {
-			font-size: 0.7rem;
-			padding: 0.22rem 0.55rem;
-			border-radius: 999px;
-			border: 1px solid rgba(255, 255, 255, 0.12);
-			opacity: 0.85;
-		}
+    .pub-main{
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 1rem;
+      padding: 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
 
-		.pill {
-			font-size: 0.7rem;
-			padding: 0.22rem 0.55rem;
-			border-radius: 999px;
-			border: 1px solid var(--color-accent);
-			color: var(--color-accent);
-			text-decoration: none;
-		}
-		.pill:hover {
-			background: var(--color-accent);
-			color: white;
-		}
+    .pub-main:hover .pub-title{ text-decoration: underline; text-decoration-color: var(--color-accent); }
 
-		.coming-soon {
-			margin-top: 3rem;
-			padding: 3rem 1.5rem;
-			border: 1px dashed rgba(255, 255, 255, 0.15);
-			border-radius: 12px;
-			text-align: center;
-			opacity: 0.85;
-		}
-		.coming-soon-title {
-			font-size: 1.25rem;
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			margin-bottom: 0.75rem;
-			color: var(--color-accent);
-		}
-		.coming-soon-subtext {
-			font-size: 0.95rem;
-			line-height: 1.6;
-			max-width: 32rem;
-			margin: 0 auto;
-		}
+    .pub-cover{
+      width: 96px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
 
-		@media (max-width: 480px) {
-			.pub-card {
-				grid-template-columns: 1fr;
-			}
-			.pub-cover {
-				width: 100%;
-				height: 160px;
-			}
-		}
-	</style>
+    .pub-title{
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 0.4rem;
+    }
+
+    .badge{
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      margin-bottom: 0.5rem;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--color-accent-2);
+    }
+
+    .pub-authors{
+      opacity: 0.8;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .pub-desc{
+      opacity: 0.8;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pub-actions{
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem 1rem;
+    }
+
+    .tag{
+      font-size: 0.72rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.12);
+      opacity: 0.9;
+    }
+
+    .spacer{ flex: 1; }
+
+    .pill{
+      font-size: 0.78rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.14);
+      text-decoration: none;
+      color: inherit;
+      opacity: 0.9;
+    }
+
+    .pill:hover{
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .pill-accent{
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  </style>
 </PageLayout>

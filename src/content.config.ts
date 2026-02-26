@@ -57,22 +57,23 @@ const tag = defineCollection({
 });
 
 const publication = defineCollection({
-	loader: glob({ base: "./src/content/publication", pattern: "**/*.{md,mdx}" }),
-	schema: baseSchema.extend({
-		description: z.string().optional(),
-		publishDate: z
-			.string()
-			.or(z.date())
-			.transform((val) => new Date(val)),
-		authors: z.string().optional(),
-		venue: z.string().optional(), // e.g. "Preprint", "NeurIPS 2025 Spotlight"
-		primaryUrl: z.string(), // where the card title goes (arxiv/pdf/etc.)
-		arxivUrl: z.string().optional(),
-		githubUrl: z.string().optional(),
-		pdfUrl: z.string().optional(),
-		tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-		cover: z.string().optional(), // e.g. "/publication-covers/infusion.png"
-	}),
+  loader: glob({ base: "./src/content/publication", pattern: "**/*.{md,mdx}" }),
+  schema: baseSchema.extend({
+    year: z.number().int().min(1900).max(2100),
+    authors: z.string().optional(),
+    venue: z.string().optional(),          // e.g. "Preprint", "NeurIPS Spotlight"
+    description: z.string().optional(),
+    cover: z.string().optional(),          // e.g. "/publication-covers/infusion.png"
+    tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+
+    // outbound links (no internal page needed)
+    links: z.object({
+      primary: z.string().url(),           // where clicking the card goes
+      arxiv: z.string().url().optional(),
+      pdf: z.string().url().optional(),
+      github: z.string().url().optional(),
+    }),
+  }),
 });
 
 const projects = defineCollection({
