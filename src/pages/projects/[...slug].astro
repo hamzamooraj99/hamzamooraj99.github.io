@@ -18,7 +18,7 @@ const { description, timeline, github, title } = project.data;
 ---
 
 <PageLayout meta={{ title: project.data.title }}>
-  <article>
+  <article class="mx-auto w-full max-w-3xl">
     <!-- No custom header here; markdown is the page -->
 
     <div class="prose">
@@ -40,7 +40,7 @@ const { description, timeline, github, title } = project.data;
 
       {github && (
         <div class="project-footer-actions">
-          <a class="btn" href={github} target="_blank" rel="noreferrer">View GitHub repo</a>
+          <a class="btn" href={github} target="_blank" rel="noreferrer">GitHub</a>
         </div>
       )}
     </footer>
@@ -53,5 +53,14 @@ const { description, timeline, github, title } = project.data;
     .label { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.35rem; }
     .value { font-size: 0.95rem; line-height: 1.6; }
     .project-footer-actions { margin-top: 1.25rem; }
+	.github-btn {
+		@apply inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium no-underline transition;
+		@apply border-accent text-accent;
+		@apply hover:bg-accent hover:text-white;
+	}
+	.github-icon {
+		width: 16px;
+		height: 16px;
+	}
   </style>
 </PageLayout>
