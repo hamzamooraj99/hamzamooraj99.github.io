@@ -3,8 +3,43 @@ import PageLayout from "@/layouts/Base.astro";
 ---
 
 <PageLayout meta={{ title: "Publications" }}>
-	<section>
-		<h1 class="title mb-6">Publications</h1>
-		<p class="mb-4">Publication list and preprints. (We’ll fill this next.)</p>
-	</section>
+  <section class="mx-auto max-w-3xl">
+    <h1 class="title mb-6">Publications</h1>
+
+    <div class="coming-soon">
+      <div class="coming-soon-inner">
+        <div class="coming-soon-title">Coming Soon</div>
+        <div class="coming-soon-subtext">
+          A systematic study on architectural trade-offs for crop disease classification is currently in preparation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .coming-soon {
+      margin-top: 3rem;
+      padding: 3rem 1.5rem;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      text-align: center;
+      opacity: 0.85;
+    }
+
+    .coming-soon-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      color: var(--color-accent);
+    }
+
+    .coming-soon-subtext {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+  </style>
 </PageLayout>
