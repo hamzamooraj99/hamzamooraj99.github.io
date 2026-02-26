@@ -1,5 +1,5 @@
 ---
-title: "Visual Model Architecture Benchmarking for Robust Crop Disease Classification"
+title: "Vision-Model Benchmarking for Crop Disease Classification"
 description: "Benchmarked CNNs and Vision–Language Models under domain shift to build a robust crop disease classification pipeline across lab and field data."
 # date: 2026-02-01
 # cover: "/images/diabetes.png"

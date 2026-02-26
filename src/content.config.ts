@@ -56,4 +56,15 @@ const tag = defineCollection({
 	}),
 });
 
-export const collections = { post, note, tag };
+const projects = defineCollection({
+	type: "content",
+	schema: baseSchema.extend({
+		description: z.string(),
+		timeline: z.string().optional(),
+		github: z.string().url().optional(),
+		cover: z.string().optional(),
+		order: z.number(),
+	}),
+});
+
+export const collections = { post, note, tag, projects };

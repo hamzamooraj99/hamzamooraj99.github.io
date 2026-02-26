@@ -2,6 +2,8 @@
 import PageLayout from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
 
+const slugFromId = (id: string) => id.replace(/\.(md|mdx)$/, "").split("/").pop()!;
+
 const projects = (await getCollection("projects"))
 	.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 ---
@@ -13,7 +15,7 @@ const projects = (await getCollection("projects"))
 		<ul class="project-grid" role="list">
 			{projects.map((p) => (
 				<li class="project-card">
-					<a class="project-link" href={`/projects/${p.slug}/`}>
+					<a class="project-link" href={`/projects/${slugFromId(p.id)}/`}>
 						<div class="project-cover">
 							<img src={p.data.cover} alt={`${p.data.title} cover`} loading="lazy" />
 						</div>
