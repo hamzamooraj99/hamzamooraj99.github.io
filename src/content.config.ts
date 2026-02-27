@@ -58,7 +58,8 @@ const tag = defineCollection({
 
 const publication = defineCollection({
   loader: glob({ base: "./src/content/publication", pattern: "**/*.{md,mdx}" }),
-  schema: baseSchema.extend({
+  schema: z.object({
+  	title: z.string().max(200),   // allow long research titles
     year: z.number().int().min(1900).max(2100),
     authors: z.string().optional(),
     venue: z.string().optional(),          // e.g. "Preprint", "NeurIPS Spotlight"

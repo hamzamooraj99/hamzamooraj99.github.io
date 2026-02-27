@@ -24,7 +24,7 @@ const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
     {pubs.length === 0 ? (
       <div class="coming-soon">
         <div class="coming-title">Coming soon</div>
-        <div class="coming-text">Selected writing and manuscripts will appear here.</div>
+        <div class="coming-text">Preprint and published papers will be posted here</div>
       </div>
     ) : (
       years.map((year) => (
@@ -66,7 +66,7 @@ const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
                     <a class="pill" href={p.data.links.pdf} target="_blank" rel="noreferrer">PDF</a>
                   )}
                   {p.data.links.github && (
-                    <a class="pill pill-accent" href={p.data.links.github} target="_blank" rel="noreferrer">GitHub</a>
+                    <a class="pill" href={p.data.links.github} target="_blank" rel="noreferrer">GitHub</a>
                   )}
                 </div>
               </div>
