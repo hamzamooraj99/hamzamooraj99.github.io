@@ -3,7 +3,7 @@ title: "Multimodal Medical QA Assistant with RAG"
 description: "Designed and built a multimodal medical QA system using RAG, FAISS, LLaMA and Whisper to ground responses in trusted NHS healthcare data."
 timeline: "Jan 12, 2025 - Apr 12, 2025"
 cover: "/project-covers/medqa.png"
-order: 2
+order: 3
 github: "https://github.com/hamzamooraj99/Medical-CA-w-RAG"
 ---
 
@@ -60,3 +60,6 @@ The objective was to improve factual reliability by grounding responses exclusiv
 LLaMA, FAISS, Hugging Face Transformers, Whisper, Gradio, PyTorch
 
 ***
+
+<img src="/public/project-images/fluRAG.png" width="200" height="100"></img>
+<img src="/public/project-images/vision_RAG_retrieval.png" width="200" height="100"></img>
