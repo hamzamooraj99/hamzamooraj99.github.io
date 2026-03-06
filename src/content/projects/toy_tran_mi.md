@@ -61,7 +61,7 @@ Training objective: autoregressive next-token prediction.
 Attention probes were used to measure whether the model attends to the expected induction offset $( j = i - P)$.
 
 <figure>
-    <img src="/public/project-images/offset_diagonal_mean_std1.png" height=400>
+    <img src="/project-images/offset_diagonal_mean_std1.png" height=400>
     <figcaption>Mean attention assigned to the expected induction offset across attention heads.</figcaption>
 </figure>
 
@@ -70,7 +70,7 @@ Despite perfect task performance, attention weights remained close to the **unif
 Attention heatmaps further revealed **diffuse recency-biased gradients** rather than a clear induction diagonal.
 
 <figure>
-    <img src="/public/project-images/attn_heatmap_L0_H1.png" height=400>
+    <img src="/project-images/attn_heatmap_L0_H1.png" height=400>
     <figcaption>Example attention heatmap showing recency-biased attention rather than token-copying behaviour.</figcaption>
 </figure>
 
@@ -93,7 +93,7 @@ Cyclically shifting the sequence with `torch.roll` produced no measurable change
 Random tokens inserted at the beginning of the sequence preserved high induction-region accuracy.
 
 <figure>
-    <img src="/public/project-images/offset_diagonal_mean_std3.png" height=400>
+    <img src="/project-images/offset_diagonal_mean_std3.png" height=400>
     <figcaption>Offset-diagonal attention under prefix perturbation.</figcaption>
 </figure>
 
