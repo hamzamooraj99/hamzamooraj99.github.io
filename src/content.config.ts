@@ -65,11 +65,11 @@ const publication = defineCollection({
     venue: z.string().optional(),          // e.g. "Preprint", "NeurIPS Spotlight"
     description: z.string().optional(),
     cover: z.string().optional(),          // e.g. "/publication-covers/infusion.png"
-    tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+    tags: z.array(z.string()).default([]),
 
     // outbound links (no internal page needed)
     links: z.object({
-      primary: z.string().url(),           // where clicking the card goes
+      primary: z.string().url().optional(),           // where clicking the card goes
       arxiv: z.string().url().optional(),
       pdf: z.string().url().optional(),
       github: z.string().url().optional(),
