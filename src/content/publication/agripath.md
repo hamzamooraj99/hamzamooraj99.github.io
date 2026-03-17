@@ -8,7 +8,7 @@ cover: "/project-covers/agripath.png"
 tags: ["Vision-Language Models", "AI in Agriculture"]
 links:
   # primary: "https://example.com"
-  # arxiv: "https://example.com"
+  arxiv: "http://arxiv.org/abs/2603.13354"
   # pdf: "https://example.com"
   github: "https://github.com/hamzamooraj99/AgriPath-Publication"
 ---
