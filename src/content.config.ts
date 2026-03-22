@@ -80,6 +80,7 @@ const publication = defineCollection({
 const projects = defineCollection({
 	type: "content",
 	schema: baseSchema.extend({
+		title: z.string().max(200),
 		description: z.string(),
 		timeline: z.string().optional(),
 		github: z.string().url().optional(),
