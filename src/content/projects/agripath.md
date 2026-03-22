@@ -7,18 +7,19 @@ order: 1
 github: "https://github.com/hamzamooraj99/AgriPath-Publication"
 ---
 
-# Visual Model Architecture Benchmarking for Robust Crop Disease Classification
+# AgriPath: A Systematic Exploration for Crop Disease Classification
+
 ### Overview
 I designed and implemented a unified evaluation framework to systematically compare CNNs, contrastive Vision–Language Models, and generative Vision–Language Models for fine-grained crop disease classification under real-world domain shift.
 
-The goal was not just accuracy under controlled conditions, but robustness across lab and field environments.
+The focus was not only on accuracy under controlled conditions, but on **robustness across lab and field environments**, where visual variability is significantly higher.
 
 ---
 
 ### Problem
 Many computer vision systems for agriculture perform well on curated lab images but degrade significantly when deployed in uncontrolled field conditions.
 
-This project evaluated multiple architectural paradigms under explicit Lab vs Field separation to understand performance trade-offs and robustness characteristics.
+This project evaluates multiple architectural paradigms under explicit Lab vs Field separation to understand **performance trade-offs, generalisation behaviour, and robustness under domain shift**.
 
 ---
 
@@ -48,9 +49,9 @@ The 30k subset preserves all classes and supports fair evaluation across domain 
 
 ---
 
-### System Design
+### Methodology
 
-* Domain-aware dataset (65 crop–disease classes with clear lab and field split)
+* Domain-aware dataset with explicit lab/field split
 * Unified training and evaluation pipeline across:
   * ResNet-50 (transfer learning baseline)
   * Contrastive VLMs (CLIP, SigLIP)
@@ -58,11 +59,22 @@ The 30k subset preserves all classes and supports fair evaluation across domain 
 * LoRA fine-tuning for parameter-efficient adaptation
 * Deterministic decoding for generative models
 * Programmatic output parsing with invalid-generation penalties
-* Macro F1 as primary metric
+* Macro F1 as the primary evaluation metric
 * Separate evaluation for Lab-only, Field-only, and combined regimes
 
+---
 
-***
+### Key Findings
+
+* Model performance varies significantly across **lab vs field conditions**, highlighting the importance of explicit domain-aware evaluation.
+* CNNs achieve strong performance under controlled conditions but show reduced robustness under field variability.
+* Contrastive VLMs demonstrate improved generalisation across domains compared to CNN baselines.
+* Generative VLMs introduce additional failure modes, including **invalid or unparsable outputs**, requiring structured evaluation (Parse Success Rate), but most improved generalisability between lab and field domains.
+* Deterministic decoding and output validation are necessary for reliable evaluation of generative models.
+
+These results show that **architectural choice strongly affects robustness under real-world conditions**, and that evaluation must account for both accuracy and generation reliability.
+
+---
 
 ### Engineering & Infrastructure
 
@@ -73,7 +85,15 @@ The 30k subset preserves all classes and supports fair evaluation across domain 
 * Integrated experiment tracking and artifact versioning using Weights & Biases
 * Implemented deterministic inference configurations to eliminate stochastic evaluation variance
 
-***
+---
+
+### Limitations & Future Work
+
+* Current evaluation focuses on image classification; extending to multi-step or agentic settings would better reflect real deployment conditions.
+* Generative model evaluation is constrained by parsing-based metrics; richer evaluation frameworks could better capture semantic correctness.
+* Dataset, while diverse, is still limited to 16 crops and could be expanded for broader generalisation analysis.
+
+---
 
 ### Technologies
 
