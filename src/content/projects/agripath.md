@@ -1,18 +1,12 @@
 ---
-title: "AgriPath: A Systematic Exploration of Architectural Trade-offs for Crop Disease Classification"
-year: 2026
-venue: "Under Review - TMLR 2026"
-authors: "Hamza Mooraj, Georgios Pantazopoulos, Alessandro Suglia"
-# description: "Benchmarked CNNs and Vision–Language Models under domain shift to build a robust crop disease classification pipeline across lab and field data."
+title: "AgriPath: A Systematic Exploration for Crop Disease Classification"
+description: "Built a neural network model to predict diabetes risk, analysing performance under class imbalance using TensorFlow and Keras."
+timeline: "Jun 18, 2025 - Mar 8, 2026"
 cover: "/project-covers/agripath.png"
-tags: ["Vision-Language Models", "AI in Agriculture"]
-links:
-  # primary: "https://example.com"
-  arxiv: "https://arxiv.org/abs/2603.13354"
-  # pdf: "https://example.com"
-  github: "https://github.com/hamzamooraj99/AgriPath-Publication"
+order: 1
+github: "https://github.com/hamzamooraj99/AgriPath-Publication"
 ---
-<!-- 
+
 # Visual Model Architecture Benchmarking for Robust Crop Disease Classification
 ### Overview
 I designed and implemented a unified evaluation framework to systematically compare CNNs, contrastive Vision–Language Models, and generative Vision–Language Models for fine-grained crop disease classification under real-world domain shift.
@@ -85,4 +79,4 @@ The 30k subset preserves all classes and supports fair evaluation across domain 
 
 PyTorch, Transformers, PEFT, Unsloth, PyTorch Lightning, Weights & Biases
 
-*** -->
+***
