@@ -82,10 +82,12 @@ const projects = defineCollection({
 	schema: baseSchema.extend({
 		title: z.string().max(200),
 		description: z.string(),
+		pill_description: z.string(),
 		timeline: z.string().optional(),
 		github: z.string().url().optional(),
 		cover: z.string().optional(),
 		order: z.number(),
+		category: z.enum(["Research", "Applied Research", "Engineering System"]).optional(),
 	}),
 });
 

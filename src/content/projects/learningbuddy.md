@@ -1,10 +1,12 @@
 ---
 title: "AI Learning Buddy – RAG Academic Assistant"
 description: "Designed and deployed a containerized RAG-based academic assistant using Milvus and local LLaMA to ground answers in course materials."
+pill_description: "Containerized RAG-based academic assistant showcasing end-to-end retrieval, deployment, and system design."
 timeline: "Jul 15, 2025 - Sep 15, 2025"
 cover: "/project-covers/learningbuddy.png"
 order: 4
 github: "https://github.com/hamzamooraj99/HWU-AI-Learning-Buddy-PoC"
+category: "Engineering System"
 ---
 
 <figure>
@@ -15,17 +17,19 @@ github: "https://github.com/hamzamooraj99/HWU-AI-Learning-Buddy-PoC"
 
 ### Overview
 
-I designed and implemented a retrieval-augmented “Learning Buddy” to support university students by answering course-specific questions grounded in official materials.
+I designed and deployed a retrieval-augmented “Learning Buddy” to support university students by answering course-specific questions grounded in official materials.
 
-The system was deployed on a university-managed server as a containerized, local-first solution, and evaluated across multiple courses to study its behaviour under realistic usage conditions.
+The system was implemented as a containerized, local-first solution and deployed on a university-managed server, enabling end-to-end testing under realistic usage conditions.
+
+This project focused on building a robust, modular RAG system and observing how it performs across different courses, query types, and document structures.
 
 ---
 
 ### Problem
 
-Students often struggle to locate precise information within large volumes of course documentation.
+Students often need to extract precise information from large volumes of course documentation.
 
-The goal was to build a **document-grounded assistant** that could provide accurate, course-specific answers while preserving data privacy, and to evaluate how such a system performs across different types of queries and document structures.
+The goal was to build a document-grounded assistant that could provide accurate, course-specific answers while preserving data privacy, and to understand how such a system performs across different types of queries and content formats.
 
 ***
 
@@ -33,45 +37,42 @@ The goal was to build a **document-grounded assistant** that could provide accur
 
 **System Architecture**
 
-* Document ingestion pipeline (PDF → Markdown → structured JSON)
-* Semantic embeddings using BAAI/bge-small-en-v1.5
-* Vector search via Milvus
-* Local LLaMA 3 model served through Ollama
-* Streamlit web interface
-* Docker Compose orchestration across services
+* Document ingestion pipeline (PDF → Markdown → structured JSON)  
+* Semantic embeddings using BAAI/bge-small-en-v1.5  
+* Vector search via Milvus  
+* Local LLaMA 3 model served through Ollama  
+* Streamlit interface with Docker Compose orchestration  
 
 **Key Design Decisions**
 
-* Course-level data isolation using `course_id` filtering in the vector database  
+* Course-level data isolation using `course_id` filtering  
 * Fully local deployment to eliminate reliance on external APIs  
 * Modular ingestion → embedding → indexing → retrieval pipeline  
-* Structured evaluation using manually curated test queries  
+* Structured testing using curated query sets  
 
 ---
 
 ### Key Results
 
-* The system achieved **75% accuracy (F21CA)** and **77% accuracy (F21NL)** across evaluated question sets. :contentReference[oaicite:0]{index=0}  
-* Performance varied significantly depending on **query type and interaction structure**:
-  * Strong performance on out-of-scope and policy-based queries  
-  * Lower performance on factual and multi-turn questions (as low as ~60% in some cases) :contentReference[oaicite:1]{index=1}  
-* The system demonstrated **different behaviour across courses**, despite similar overall accuracy:
-  * Better multi-turn handling in F21NL (~84.6%)  
-  * Stronger out-of-scope handling in F21CA :contentReference[oaicite:2]{index=2}  
-* A key finding was that **document structure strongly affects retrieval performance**:
-  * Complex, multi-column or poorly formatted documents reduced accuracy  
-  * Cleaner, well-structured documents led to more reliable retrieval and responses :contentReference[oaicite:3]{index=3}  
+* Achieved **75% accuracy (F21CA)** and **77% accuracy (F21NL)** across evaluated queries  
+* Performance varied significantly by query type:
+  * strong on out-of-scope and policy queries  
+  * weaker on factual and multi-turn queries  
+* System behaviour differed across courses despite similar overall accuracy  
+* Document structure had a major impact on performance:
+  * poorly formatted documents reduced accuracy  
+  * well-structured documents improved retrieval quality  
 
-These results show that RAG system performance is not only model-dependent, but **highly sensitive to the structure and quality of the underlying knowledge base**.
+These results highlight that RAG system performance depends heavily on data quality, query structure, and retrieval design—not just the underlying model.
 
 ---
 
 ### Limitations & Trade-offs
 
-* The system is limited to a **single-server architecture**, restricting scalability. :contentReference[oaicite:4]{index=4}  
-* The data ingestion pipeline is **manual and error-prone**, making it unsuitable for dynamic updates. :contentReference[oaicite:5]{index=5}  
-* Hallucination is reduced but not eliminated; errors can still occur if retrieved context is misinterpreted. :contentReference[oaicite:6]{index=6}  
-* Performance depends heavily on document formatting and data quality, which are outside the model itself. :contentReference[oaicite:7]{index=7}  
+* Limited to a single-server deployment  
+* Manual ingestion pipeline is not suitable for dynamic updates  
+* Hallucinations reduced but not eliminated  
+* Performance depends strongly on document formatting and quality  
 
 ---
 
