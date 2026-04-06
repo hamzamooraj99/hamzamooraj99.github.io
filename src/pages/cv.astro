@@ -1,83 +1,122 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
 
-const cvUrl = "/cv/research-cv.pdf";
+const engineeringCvUrl = "/cv/engineer.pdf";
+const researchCvUrl = "/cv/research.pdf";
 ---
 
-<PageLayout meta={{ title: "CV" }}>
-  <section class="mx-auto w-full max-w-3xl">
-    <h1 class="title mb-6">Curriculum Vitae</h1>
+<PageLayout meta={{ title: "Resume / CV" }}>
+  <section class="mx-auto w-full max-w-4xl">
+    <h1 class="title mb-4">Resume / CV</h1>
 
-    <div class="cv-actions">
-      <a class="github-btn" href={cvUrl} download>Download PDF</a>
-      <a class="github-btn" href={cvUrl} target="_blank" rel="noreferrer">Open in new tab</a>
-    </div>
+    <p class="intro mb-8">
+      I maintain two versions of my CV depending on role focus.
+    </p>
 
-    <div class="cv-frame">
-      <object data={cvUrl} type="application/pdf" width="100%" height="100%">
-        <p class="fallback">
-          Your browser can’t display PDFs inline.
-          <a class="cactus-link" href={cvUrl} target="_blank" rel="noreferrer">Open the CV</a>
-          or <a class="cactus-link" href={cvUrl} download>download it</a>.
+    <div class="cv-grid">
+      <article class="cv-card">
+        <h2 class="cv-title">Engineering CV</h2>
+        <p class="cv-description">
+          For ML engineering, AI engineering, and applied systems roles.
         </p>
-      </object>
+
+        <div class="cv-actions">
+          <a class="github-btn" href={engineeringCvUrl} download>Download PDF</a>
+          <a
+            class="github-btn"
+            href={engineeringCvUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open in new tab
+          </a>
+        </div>
+      </article>
+
+      <article class="cv-card">
+        <h2 class="cv-title">Research CV</h2>
+        <p class="cv-description">
+          For research roles, fellowships, and research-focused applications.
+        </p>
+
+        <div class="cv-actions">
+          <a class="github-btn" href={researchCvUrl} download>Download PDF</a>
+          <a
+            class="github-btn"
+            href={researchCvUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open in new tab
+          </a>
+        </div>
+      </article>
     </div>
   </section>
 
   <style>
-    .cv-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
+    .intro {
+      opacity: 0.85;
+      line-height: 1.7;
+      max-width: 42rem;
     }
 
-    .github-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.6rem 1rem;
-		border-radius: 999px;
-		font-size: 0.9rem;
-		font-weight: 500;
-		text-decoration: none;
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
 
-		color: var(--color-accent);
-		border: 1px solid var(--color-accent);
-		background: transparent;
+    @media (min-width: 768px) {
+      .cv-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
-		transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
-	}
-
-	.github-btn:hover {
-		background: var(--color-accent);
-		color: white;
-		transform: translateY(-1px);
-	}
-
-	.github-icon {
-		width: 16px;
-		height: 16px;
-	}
-
-    .cv-frame {
-      border: 1px solid rgba(255,255,255,0.12);
+    .cv-card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
-      overflow: hidden;
-      height: min(80vh, 1000px);
-      background: rgba(255,255,255,0.02);
+      padding: 1.25rem;
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .fallback {
-      padding: 1rem;
+    .cv-title {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .cv-description {
+      margin: 0 0 1rem 0;
       opacity: 0.85;
       line-height: 1.6;
     }
 
-    /* On small screens, previews are often annoying — hide it */
-    @media (max-width: 640px) {
-      .cv-frame { display: none; }
+    .cv-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent);
+      background: transparent;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .github-btn:hover {
+      background: var(--color-accent);
+      color: white;
+      transform: translateY(-1px);
     }
   </style>
 </PageLayout>
