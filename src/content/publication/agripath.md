@@ -1,7 +1,7 @@
 ---
 title: "AgriPath: A Systematic Exploration of Architectural Trade-offs for Crop Disease Classification"
 year: 2026
-venue: "Under Review at TMLR (2026)"
+venue: "Accepted at TMLR (2026)"
 authors: "Hamza Mooraj, Georgios Pantazopoulos, Alessandro Suglia"
 # description: "Benchmarked CNNs and Vision–Language Models under domain shift to build a robust crop disease classification pipeline across lab and field data."
 cover: "/project-covers/agripath.png"
