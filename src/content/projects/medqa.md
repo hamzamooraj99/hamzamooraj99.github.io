@@ -4,7 +4,7 @@ description: "Empirical study of reliability in a multimodal medical QA system, 
 pill_description: "Evaluation of factual reliability and system trade-offs in a multimodal medical QA assistant with RAG."
 timeline: "Jan 12, 2025 - Apr 12, 2025"
 cover: "/project-covers/medqa.png"
-order: 3
+order: 4
 github: "https://github.com/hamzamooraj99/Medical-CA-w-RAG"
 category: "Applied Research"
 ---

@@ -4,7 +4,7 @@ description: "Empirical study of how a transformer solves a periodic induction t
 pill_description: "Study of how correct model behaviour can arise from shortcut-based internal strategies in a small transformer."
 timeline: "Feb 28, 2026 - Mar 7, 2026"
 cover: "/project-covers/toy_tran_mi.png"
-order: 2
+order: 3
 github: "https://github.com/hamzamooraj99/tiny-transformer-mech-interp"
 category: "Research"
 ---
