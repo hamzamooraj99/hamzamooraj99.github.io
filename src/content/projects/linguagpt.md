@@ -4,7 +4,8 @@ description: "Built a local-first MCP server that gives AI language tutors durab
 pill_description: "Local-first MCP memory layer for AI language tutoring, with validated storage, audit logging, and an optional Windows launcher."
 cover: "/project-covers/linguagpt.png"
 order: 2
-category: "Engineering System"
+github: "https://github.com/hamzamooraj99/LinguaGPT"
+category: "AI Systems"
 ---
 
 # LinguaGPT – Local-First Language Tutor Memory Layer
@@ -96,6 +97,6 @@ Python, FastMCP, MCP, Markdown, OAuth, Starlette, WPF, Windows desktop automatio
 ### Workflow
 
 <figure>
-    <img src="../../project-images/linguagpt-workflow.png" style="display: block; margin: 0 auto">
+    <img src="../../project-images/linguagpt-workflow.png" height=400>
     <figcaption align=center>How the model reads bounded learner context, writes approved updates, and preserves the full session history locally</figcaption>
 </figure>

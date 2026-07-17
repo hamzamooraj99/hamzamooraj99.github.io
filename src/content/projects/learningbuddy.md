@@ -6,7 +6,7 @@ timeline: "Jul 15, 2025 - Sep 15, 2025"
 cover: "/project-covers/learningbuddy.png"
 order: 5
 github: "https://github.com/hamzamooraj99/HWU-AI-Learning-Buddy-PoC"
-category: "Engineering System"
+category: "AI Engineering"
 ---
 
 <figure>

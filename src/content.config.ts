@@ -87,7 +87,7 @@ const projects = defineCollection({
 		github: z.string().url().optional(),
 		cover: z.string().optional(),
 		order: z.number(),
-		category: z.enum(["Research", "Applied Research", "Engineering System"]).optional(),
+		category: z.enum(["Research", "Applied Research", "AI Engineering", "AI Systems"]).optional(),
 	}),
 });
 
