@@ -1,22 +1,22 @@
 ---
-title: "LinguaGPT – Local-First Language Tutor Memory Layer"
+title: "LinguaMCP – Local-First Language Tutor Memory Layer"
 description: "Built a local-first MCP server that gives AI language tutors durable, human-readable memory through Markdown-backed learner profiles, session logs, and bounded context tools."
 pill_description: "Local-first MCP memory layer for AI language tutoring, with validated storage, audit logging, and an optional Windows launcher."
-cover: "/project-covers/linguagpt.png"
+cover: "/project-covers/linguamcp.png"
 order: 2
-github: "https://github.com/hamzamooraj99/LinguaGPT"
+github: "https://github.com/hamzamooraj99/LinguaMCP"
 category: "AI Systems"
 ---
 
-# LinguaGPT – Local-First Language Tutor Memory Layer
+# LinguaMCP – Local-First Language Tutor Memory Layer
 
 ### Overview
 
-I designed and implemented LinguaGPT, a local-first memory layer for AI language tutoring built on the Model Context Protocol (MCP).
+I designed and implemented LinguaMCP, a local-first memory layer for AI language tutoring built on the Model Context Protocol (MCP).
 
 The system stores learner state in human-readable Markdown files instead of a database, allowing any compatible model to keep track of profiles, lesson plans, progress, vocabulary, mistakes, scenarios, homework, and session summaries across conversations.
 
-The goal was to solve a common failure mode in tutoring workflows: the model may teach well in the moment, but it loses continuity between sessions. LinguaGPT preserves that continuity without turning the server itself into the tutor.
+The goal was to solve a common failure mode in tutoring workflows: the model may teach well in the moment, but it loses continuity between sessions. LinguaMCP preserves that continuity without turning the server itself into the tutor.
 
 ---
 
@@ -52,7 +52,7 @@ The problem was to build a memory system that is:
 * Human-readable Markdown as the source of truth instead of a database
 * Whitelisted file access to prevent arbitrary writes and path traversal
 * Clear separation of responsibilities:
-  * LinguaGPT stores and retrieves memory
+  * LinguaMCP stores and retrieves memory
   * the connected model does the teaching
 * Audit logging for tool calls to preserve traceability
 * Compactable active files plus archived session history to keep the live context small
@@ -97,6 +97,6 @@ Python, FastMCP, MCP, Markdown, OAuth, Starlette, WPF, Windows desktop automatio
 ### Workflow
 
 <figure>
-    <img src="../../project-images/linguagpt-workflow.png" height=400>
+    <img src="../../project-images/linguamcp-workflow.png" height=400>
     <figcaption align=center>How the model reads bounded learner context, writes approved updates, and preserves the full session history locally</figcaption>
 </figure>
