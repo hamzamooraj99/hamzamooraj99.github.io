@@ -85,9 +85,10 @@ const projects = defineCollection({
 		pill_description: z.string(),
 		timeline: z.string().optional(),
 		github: z.string().url().optional(),
+		paper: z.string().optional(), // full URL or a site path like "/papers/name.pdf"
 		cover: z.string().optional(),
 		order: z.number(),
-		category: z.enum(["Research", "Applied Research", "AI Engineering", "AI Systems"]).optional(),
+		category: z.enum(["Research", "AI Safety", "Applied Research", "AI Engineering", "AI Systems"]).optional(),
 	}),
 });
 

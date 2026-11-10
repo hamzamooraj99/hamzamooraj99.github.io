@@ -6,6 +6,7 @@ timeline: "Jun 18, 2025 - Mar 8, 2026"
 cover: "/project-covers/agripath.png"
 order: 1
 github: "https://github.com/hamzamooraj99/AgriPath-Publication"
+paper: "https://openreview.net/forum?id=5UI1wrq5pS"
 category: "Research"
 ---
 

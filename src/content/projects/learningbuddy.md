@@ -4,7 +4,7 @@ description: "Designed and deployed a containerized RAG-based academic assistant
 pill_description: "Containerized RAG-based academic assistant showcasing end-to-end retrieval, deployment, and system design."
 timeline: "Jul 15, 2025 - Sep 15, 2025"
 cover: "/project-covers/learningbuddy.png"
-order: 5
+order: 7
 github: "https://github.com/hamzamooraj99/HWU-AI-Learning-Buddy-PoC"
 category: "AI Engineering"
 ---
