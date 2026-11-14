@@ -6,7 +6,7 @@ timeline: "Feb 28, 2026 - Mar 7, 2026"
 cover: "/project-covers/toy_tran_mi.png"
 order: 4
 github: "https://github.com/hamzamooraj99/tiny-transformer-mech-interp"
-category: "AI Safety"
+category: ["AI Research", "AI Safety"]
 ---
 
 # Mechanistic Analysis of Induction in a Tiny Transformer

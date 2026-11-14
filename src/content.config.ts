@@ -88,7 +88,9 @@ const projects = defineCollection({
 		paper: z.string().optional(), // full URL or a site path like "/papers/name.pdf"
 		cover: z.string().optional(),
 		order: z.number(),
-		category: z.enum(["Research", "AI Safety", "Applied Research", "AI Engineering", "AI Systems"]).optional(),
+		category: z
+			.array(z.enum(["AI Research", "AI Safety", "AI Engineering", "AI Systems"]))
+			.default([]),
 	}),
 });
 

@@ -5,7 +5,7 @@ pill_description: "Local-first MCP memory layer for AI language tutoring, with v
 cover: "/project-covers/linguamcp.png"
 order: 2
 github: "https://github.com/hamzamooraj99/LinguaMCP"
-category: "AI Systems"
+category: ["AI Systems"]
 ---
 
 # LinguaMCP – Local-First Language Tutor Memory Layer

@@ -7,7 +7,7 @@ cover: "/project-covers/agripath.png"
 order: 1
 github: "https://github.com/hamzamooraj99/AgriPath-Publication"
 paper: "https://openreview.net/forum?id=5UI1wrq5pS"
-category: "Research"
+category: ["AI Research"]
 ---
 
 # AgriPath: A Systematic Exploration of Crop Disease Classification

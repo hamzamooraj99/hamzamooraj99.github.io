@@ -6,7 +6,7 @@ timeline: "Jan 12, 2025 - Apr 12, 2025"
 cover: "/project-covers/medqa.png"
 order: 5
 github: "https://github.com/hamzamooraj99/Medical-CA-w-RAG"
-category: "Applied Research"
+category: ["AI Research"]
 ---
 
 # Evaluating Reliability in a Multimodal Medical QA System with RAG

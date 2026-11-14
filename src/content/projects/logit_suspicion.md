@@ -7,7 +7,7 @@ cover: "/project-covers/logit_suspicion.png"
 order: 6
 github: "https://github.com/reinthal/control-arena"
 paper: "https://apartresearch.com/sprints/projects/logitweighted-suspicion-scoring-in-ai-control-ktmf"
-category: "AI Safety"
+category: ["AI Research", "AI Safety"]
 ---
 
 # Logit-Weighted Suspicion Scoring in AI Control: A Null Result

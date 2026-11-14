@@ -7,7 +7,7 @@ cover: "/project-covers/shortcut_paradox.png"
 order: 3
 github: "https://github.com/hamzamooraj99/Shortcut-Paradox"
 paper: "../../../public/papers/shortcut-paradox.pdf"
-category: "AI Safety"
+category: ["AI Research", "AI Safety"]
 ---
 
 # The Shortcut Paradox – Do LLM Agents Copy a Cheat from a Shared Wiki?

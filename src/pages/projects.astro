@@ -6,15 +6,26 @@ const slugFromId = (id: string) => id.replace(/\.(md|mdx)$/, "").split("/").pop(
 
 const projects = (await getCollection("projects"))
 	.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+const categories = [...new Set(projects.flatMap((p) => p.data.category))];
 ---
 
 <PageLayout meta={{ title: "Projects" }}>
 	<section>
-		<h1 class="title mb-8">Projects</h1>
+		<div class="projects-header mb-8">
+			<h1 class="title">Projects</h1>
+			<div class="filter-pills" role="group" aria-label="Filter projects by category">
+				{categories.map((c) => (
+					<button type="button" class="project-pill filter-pill" data-filter={c} aria-pressed="false">
+						{c}
+					</button>
+				))}
+			</div>
+		</div>
 
 		<ul class="project-grid" role="list">
 			{projects.map((p) => (
-				<li class="project-card">
+				<li class="project-card" data-category={p.data.category.join("|")}>
 					<a class="project-link" href={`/projects/${slugFromId(p.id)}/`}>
 						<div class="project-cover">
 							<img src={p.data.cover} alt={`${p.data.title} cover`} loading="lazy" />
@@ -22,7 +33,9 @@ const projects = (await getCollection("projects"))
 						<div class="project-meta">
 							<div class="project-topline">
 								<h2 class="project-title">{p.data.title}</h2>
-								{p.data.category && <span class="project-pill">{p.data.category}</span>}
+								<div class="card-pills">
+									{p.data.category.map((c) => <span class="project-pill">{c}</span>)}
+								</div>
 							</div>
 
 							{p.data.description && (
@@ -38,6 +51,29 @@ const projects = (await getCollection("projects"))
 			))}
 		</ul>
 	</section>
+
+	<script>
+		const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-pill");
+		const cards = document.querySelectorAll<HTMLElement>(".project-card");
+
+		const apply = () => {
+			const active = new Set(
+				[...buttons].filter((b) => b.getAttribute("aria-pressed") === "true").map((b) => b.dataset.filter),
+			);
+			cards.forEach((card) => {
+				const own = (card.dataset.category ?? "").split("|");
+				card.hidden = active.size > 0 && !own.some((c) => active.has(c));
+			});
+		};
+
+		buttons.forEach((b) =>
+			b.addEventListener("click", () => {
+				const on = b.getAttribute("aria-pressed") === "true";
+				b.setAttribute("aria-pressed", String(!on));
+				apply();
+			}),
+		);
+	</script>
 
 	<style>
 		.project-grid {
@@ -106,6 +142,45 @@ const projects = (await getCollection("projects"))
 			border: 1px solid rgba(120, 180, 255, 0.28);
 			background: rgba(120, 180, 255, 0.08);
 			white-space: nowrap;
+		}
+
+		.projects-header {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.75rem 1.5rem;
+		}
+
+		.filter-pills {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.filter-pill {
+			cursor: pointer;
+			color: inherit;
+			font-family: inherit;
+			transition: background 0.15s ease, border-color 0.15s ease;
+		}
+
+		.filter-pill:hover {
+			border-color: rgba(120, 180, 255, 0.55);
+		}
+
+		.filter-pill[aria-pressed="true"] {
+			background: rgba(120, 180, 255, 0.32);
+			border-color: rgba(120, 180, 255, 0.8);
+		}
+
+		.card-pills {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.35rem;
+		}
+
+		.project-card[hidden] {
+			display: none;
 		}
 
 		.project-description {
