@@ -139,8 +139,8 @@ const categories = [...new Set(projects.flatMap((p) => p.data.category))];
 			line-height: 1;
 			padding: 0.35rem 0.55rem;
 			border-radius: 999px;
-			border: 1px solid rgba(120, 180, 255, 0.28);
-			background: rgba(120, 180, 255, 0.08);
+			border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+			background: color-mix(in srgb, var(--color-accent) 12%, transparent);
 			white-space: nowrap;
 		}
 
@@ -165,12 +165,12 @@ const categories = [...new Set(projects.flatMap((p) => p.data.category))];
 		}
 
 		.filter-pill:hover {
-			border-color: rgba(120, 180, 255, 0.55);
+			border-color: color-mix(in srgb, var(--color-accent) 70%, transparent);
 		}
 
 		.filter-pill[aria-pressed="true"] {
-			background: rgba(120, 180, 255, 0.32);
-			border-color: rgba(120, 180, 255, 0.8);
+			background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+			border-color: var(--color-accent);
 		}
 
 		.card-pills {
@@ -197,7 +197,7 @@ const categories = [...new Set(projects.flatMap((p) => p.data.category))];
 		}
 
 		.project-card:hover {
-			border-color: rgba(120, 180, 255, 0.35);
+			border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
 			transform: translateY(-2px);
 		}
 	</style>
